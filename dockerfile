@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM python:3-slim
+FROM python:3.13.0rc2-slim
 WORKDIR /bot
 RUN apt-get update && apt-get -y install make cmake opus-tools ffmpeg
 COPY requirements.txt requirements.txt
