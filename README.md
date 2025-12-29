@@ -1,2 +1,2 @@
 # wbot
-a simple music bot for discord using pycord.
+a simple music bot for discord.

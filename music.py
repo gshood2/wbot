@@ -58,7 +58,7 @@ class Music(commands.Cog):
 
         # youtube dl wrapper, returns audio url and title of video in a tuple
         def ytdl(URL):
-            ydl_opts = {'format': 'bestaudio', }
+            ydl_opts = {'format': 'bestaudio', 'noplaylist': 'true' }
             with YoutubeDL(ydl_opts) as ydl:
                 video_info = ydl.extract_info(URL, download=False)
                 return video_info['url'], video_info['title']
@@ -145,7 +145,7 @@ class Music(commands.Cog):
             for title in self.title:
                 queue_num += 1
                 number = str(queue_num)
-                queue_list = queue_list + number + ' ' + title + ' \n'
+                queue_list = queue_list + number + ': ' + title + ' \n'
             await ctx.respond(queue_list, delete_after=100)
         else:
             await ctx.respond('Nothing is queued', delete_after=100)
