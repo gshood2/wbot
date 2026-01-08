@@ -4,16 +4,23 @@ import ctypes
 import os
 import asyncio
 from dotenv import load_dotenv
-#load .env
+#load .env vars
 load_dotenv()
-# bot setup + opus lib check
+# bot intents setup; what the bot can access
 intents = discord.Intents.default()
 intents.members = True
 intents.messages = True
 #intents.message_content = True
 wbot = commands.Bot()
+#load opus; required for audio playback
 discord.opus.load_opus(ctypes.util.find_library("opus"))
-print("opus found =", discord.opus.is_loaded())
+if discord.opus.is_loaded() is True:
+    print("Opus is loaded")
+else:
+    print("Failed to load opus library; Opus is required for bot audio playback")
+    print("Exiting")
+    sys.exit()
+
 
 # runs when bot starts
 @wbot.event
@@ -47,5 +54,6 @@ class Main(commands.Cog, name='Main'):
             await ctx.respond("I'm in a voice channel",delete_after=100)
 
 wbot.load_extension('music')
+wbot.load_extension('ai')
 wbot.add_cog(Main(wbot))
 wbot.run(os.getenv('TOKEN'))
