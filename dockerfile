@@ -1,7 +1,8 @@
 # syntax=docker/dockerfile:1
 FROM python:3.13.0rc2-slim
 WORKDIR /bot
-RUN apt-get update && apt-get -y install make cmake opus-tools ffmpeg
+RUN apt-get update && apt-get -y install make cmake opus-tools ffmpeg curl unzip
+RUN curl -fsSL https://deno.land/install.sh | bash 
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
 COPY . .
