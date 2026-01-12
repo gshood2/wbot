@@ -58,7 +58,9 @@ class Music(commands.Cog):
 
         # youtube dl wrapper, returns audio url and title of video in a tuple
         def ytdl(URL):
-            ydl_opts = {'format': 'bestaudio', 'noplaylist': 'true' }
+            ydl_opts = { 'js_runtimes': {'deno': {
+            'path': '/root/.deno/bin/deno'}},  # Replace with the actual path to deno executable
+         'format': 'bestaudio', 'noplaylist': 'true' }
             with YoutubeDL(ydl_opts) as ydl:
                 video_info = ydl.extract_info(URL, download=False)
                 return video_info['url'], video_info['title']
