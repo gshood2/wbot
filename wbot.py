@@ -55,5 +55,6 @@ class Main(commands.Cog, name='Main'):
 
 wbot.load_extension('music')
 wbot.load_extension('ai')
+wbot.load_extension('ansible')
 wbot.add_cog(Main(wbot))
 wbot.run(os.getenv('TOKEN'))
